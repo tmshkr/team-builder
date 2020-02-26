@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 function TeamList(props) {
   const { teamList } = props;
-  const list = Object.values(teamList);
+  const arr = Object.values(teamList);
   return (
     <div className="team-list">
       <ListGroup>
-        {list.length > 0 ? (
-          list.map(m => (
+        {arr.length > 0 ? (
+          arr.map(m => (
             <Link key={m.github} to={`/team/${m.github}`}>
               <ListGroupItem>
                 {m.name} <span>{m.github}</span>

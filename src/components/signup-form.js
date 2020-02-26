@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 function SignupForm(props) {
   const [teamList, setList] = props.handleList;
@@ -44,7 +44,8 @@ function SignupForm(props) {
   return (
     <>
       {params.member && !teamList[params.member] && <Redirect to="/list" />}
-      <Form className="team-form" onSubmit={hanldeSubmit}>
+      <Form className="signup-form card" onSubmit={hanldeSubmit}>
+        <h2>Member Details</h2>
         <FormGroup>
           <Label for="name">Name</Label>
           <Input

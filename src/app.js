@@ -11,7 +11,6 @@ import initialData from "./data";
 import SignupForm from "./components/signup-form";
 import TeamList from "./components/team-list";
 import TeamMember from "./components/team-member";
-// import "./app.scss";
 
 function App() {
   const [teamList, setList] = useState(initialData);

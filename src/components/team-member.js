@@ -1,14 +1,6 @@
 import React from "react";
 import { useHistory, useParams, Redirect } from "react-router-dom";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button
-} from "reactstrap";
+import { Card, CardBody, Button } from "reactstrap";
 
 function TeamMember(props) {
   const [teamList, setList] = props.handleList;

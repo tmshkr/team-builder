@@ -11,7 +11,7 @@ const data = {
     github: "alice",
     role: "UX/UI"
   },
-  bob: { name: "Bob", email: "bob@gmail.com", github: "bob", role: "DevOps" },
+  bob: { name: "Bob", email: "bob@gmail.com", github: "bob", role: "Back-end" },
   dave: {
     name: "Dave",
     email: "dave@gmail.com",
