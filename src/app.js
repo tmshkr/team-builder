@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import initialData from "./data";
-import TeamForm from "./components/team-form";
+import SignupForm from "./components/signup-form";
 import TeamList from "./components/team-list";
 // import "./app.scss";
 
@@ -31,10 +31,10 @@ function App() {
         <main>
           <Switch>
             <Route path="/signup">
-              <TeamForm handleForm={[teamList, setList]} />
+              <SignupForm handleForm={[teamList, setList]} />
             </Route>
             <Route path={("/team/:member/edit", "/team/:member")}>
-              <TeamForm handleForm={[teamList, setList]} />
+              <SignupForm handleForm={[teamList, setList]} />
             </Route>
             <Route>
               <TeamList handleForm={[teamList, setList]} />

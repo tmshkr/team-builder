@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
-function TeamForm(props) {
+function SignupForm(props) {
   const [teamList, setList] = props.handleForm;
   const [username, setUsername] = useState("");
   const [formData, setFormData] = useState({
@@ -96,4 +96,4 @@ function TeamForm(props) {
   );
 }
 
-export default TeamForm;
+export default SignupForm;
