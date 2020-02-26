@@ -1,10 +1,15 @@
+@import "~bootstrap";
+@import "app";
+@import "components/team-form";
+@import "components/team-list";
+
 * {
   outline: 1px solid cyan;
 }
 
 body {
-  // background-color: #282c34;
-  background-color: #333;
+  background-color: #282c34;
+  // background-color: #333;
   color: #fff;
   font-size: 21px;
   margin: 0;

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 function TeamForm(props) {
   const [teamList, setList] = props.handleForm;
   const [formData, setFormData] = useState({});
 
+  const history = useHistory();
+
   const hanldeSubmit = e => {
     e.preventDefault();
-    setList({ ...teamList, [formData.email]: formData });
+    setList({ ...teamList, [formData.github]: formData });
+    history.push("/list");
   };
 
   const handleChange = e => {
@@ -35,6 +39,16 @@ function TeamForm(props) {
           name="email"
           onChange={handleChange}
           placeholder="you@example.com"
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label for="github">GitHub handle</Label>
+        <Input
+          id="github"
+          type="text"
+          name="github"
+          onChange={handleChange}
+          placeholder="username"
         />
       </FormGroup>
       <FormGroup>

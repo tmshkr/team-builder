@@ -1,3 +1,22 @@
 div.team-list {
-  text-align: center;
+  // text-align: center;
+  .list-group-item {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:hover {
+      background-color: rgba(0, 150, 255, 0.5);
+    }
+  }
+  a {
+    color: inherit;
+    &:hover {
+      text-decoration: none;
+    }
+    span {
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+  }
 }

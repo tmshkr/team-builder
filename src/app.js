@@ -6,13 +6,15 @@ import {
   Link,
   Switch
 } from "react-router-dom";
-import TeamForm from "./components/team-form";
 
+import initialData from "./data";
+import TeamForm from "./components/team-form";
 import TeamList from "./components/team-list";
 // import "./app.scss";
 
 function App() {
-  const [teamList, setList] = useState({});
+  const [teamList, setList] = useState(initialData);
+  console.log(teamList);
 
   return (
     <Router>
@@ -21,6 +23,10 @@ function App() {
           <Link to="/">
             <h1>TeamBuilder</h1>
           </Link>
+          <nav>
+            <Link to="/list">List</Link>
+            <Link to="/signup">Signup</Link>
+          </nav>
         </header>
         <main>
           <Switch>
@@ -28,7 +34,7 @@ function App() {
               <TeamForm handleForm={[teamList, setList]} />
             </Route>
             <Route>
-              <TeamList />
+              <TeamList handleForm={[teamList, setList]} />
             </Route>
           </Switch>
         </main>
