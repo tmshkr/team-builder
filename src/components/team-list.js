@@ -8,8 +8,8 @@ function TeamList(props) {
     <div className="team-list">
       <ListGroup>
         {Object.values(teamList).map(m => (
-          <Link to={`/team/${m.github}`}>
-            <ListGroupItem key={m.github}>
+          <Link key={m.github} to={`/team/${m.github}`}>
+            <ListGroupItem>
               {m.name} <span>{m.github}</span>
             </ListGroupItem>
           </Link>

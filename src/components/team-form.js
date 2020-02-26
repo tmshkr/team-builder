@@ -1,15 +1,33 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 function TeamForm(props) {
   const [teamList, setList] = props.handleForm;
-  const [formData, setFormData] = useState({});
+  const [username, setUsername] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    github: "",
+    role: "Choose one"
+  });
 
   const history = useHistory();
+  const { member } = useParams();
+
+  useEffect(() => {
+    if (member) {
+      setUsername(member);
+      setFormData(teamList[member]);
+    }
+  }, []);
 
   const hanldeSubmit = e => {
     e.preventDefault();
+    // handle github username change
+    if (username && username !== formData.github) {
+      delete teamList[username];
+    }
     setList({ ...teamList, [formData.github]: formData });
     history.push("/list");
   };
@@ -19,6 +37,8 @@ function TeamForm(props) {
     setFormData({ ...formData, [name]: value });
   };
 
+  const { name, email, github, role } = formData;
+
   return (
     <Form className="team-form" onSubmit={hanldeSubmit}>
       <FormGroup>
@@ -27,6 +47,7 @@ function TeamForm(props) {
           id="name"
           type="text"
           name="name"
+          value={name}
           onChange={handleChange}
           placeholder="Your Name"
         />
@@ -37,6 +58,7 @@ function TeamForm(props) {
           id="email"
           type="email"
           name="email"
+          value={email}
           onChange={handleChange}
           placeholder="you@example.com"
         />
@@ -47,6 +69,7 @@ function TeamForm(props) {
           id="github"
           type="text"
           name="github"
+          value={github}
           onChange={handleChange}
           placeholder="username"
         />
@@ -57,8 +80,8 @@ function TeamForm(props) {
           id="select"
           type="select"
           name="role"
+          value={role}
           onChange={handleChange}
-          defaultValue="Choose one"
         >
           <option disabled>Choose one</option>
           <option>DevOps</option>
@@ -67,36 +90,6 @@ function TeamForm(props) {
           <option>Full-stack</option>
           <option>UX/UI</option>
         </Input>
-      </FormGroup>
-      <FormGroup>
-        <Label for="exampleText">Text Area</Label>
-        <Input type="textarea" name="text" id="exampleText" />
-      </FormGroup>
-      <FormGroup tag="fieldset">
-        <legend>Radio Buttons</legend>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" /> Option one is this and that—be
-            sure to include why it's great
-          </Label>
-        </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" /> Option two can be something
-            else and selecting it will deselect option one
-          </Label>
-        </FormGroup>
-        <FormGroup check disabled>
-          <Label check>
-            <Input type="radio" name="radio1" disabled /> Option three is
-            disabled
-          </Label>
-        </FormGroup>
-      </FormGroup>
-      <FormGroup check>
-        <Label check>
-          <Input type="checkbox" /> Check me out
-        </Label>
       </FormGroup>
       <Button color="primary">Submit</Button>
     </Form>

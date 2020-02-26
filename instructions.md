@@ -35,8 +35,8 @@ Follow these steps for completing your project.
 
 ## Minimum Viable Product
 
-- [ ] Render a list of team members from state
-- [ ] Build a form to add a new member to the list of members
+- [x] Render a list of team members from state
+- [x] Build a form to add a new member to the list of members
 
 ### STEP 1 - Setup your state
 
@@ -44,7 +44,7 @@ Follow these steps for completing your project.
 
 - [x] Give the state variable you just declared a default value. You will need to keep track of a list of team members and each team member will have several key/value pairs associated with them.
 
-- [ ] Render your list of team members
+- [x] Render your list of team members
 
 ### STEP 2 - Build your form
 

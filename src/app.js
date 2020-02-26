@@ -33,6 +33,9 @@ function App() {
             <Route path="/signup">
               <TeamForm handleForm={[teamList, setList]} />
             </Route>
+            <Route path={("/team/:member/edit", "/team/:member")}>
+              <TeamForm handleForm={[teamList, setList]} />
+            </Route>
             <Route>
               <TeamList handleForm={[teamList, setList]} />
             </Route>
