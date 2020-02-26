@@ -14,7 +14,6 @@ import TeamMember from "./components/team-member";
 
 function App() {
   const [teamList, setList] = useState(initialData);
-  console.log(teamList);
 
   return (
     <Router>
