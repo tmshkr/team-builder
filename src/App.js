@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
+  Link,
   Switch
 } from "react-router-dom";
 import TeamForm from "./components/team-form";
@@ -13,12 +14,14 @@ function App() {
   const [teamList, setList] = useState({});
 
   return (
-    <div id="app">
-      <header className="top">
-        <h1>TeamBuilder</h1>
-      </header>
-      <main>
-        <Router>
+    <Router>
+      <div id="app">
+        <header className="top">
+          <Link to="/">
+            <h1>TeamBuilder</h1>
+          </Link>
+        </header>
+        <main>
           <Switch>
             <Route path="/signup">
               <TeamForm handleForm={[teamList, setList]} />
@@ -27,9 +30,9 @@ function App() {
               <TeamList />
             </Route>
           </Switch>
-        </Router>
-      </main>
-    </div>
+        </main>
+      </div>
+    </Router>
   );
 }
 
