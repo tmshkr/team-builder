@@ -19,4 +19,8 @@ div.team-list {
       font-style: italic;
     }
   }
+  [class^="alert"] {
+    background-color: transparent;
+    color: #fff;
+  }
 }

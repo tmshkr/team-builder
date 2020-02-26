@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 function SignupForm(props) {
-  const [teamList, setList] = props.handleForm;
+  const [teamList, setList] = props.handleList;
   const [username, setUsername] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -17,8 +17,12 @@ function SignupForm(props) {
 
   useEffect(() => {
     if (member) {
-      setUsername(member);
-      setFormData(teamList[member]);
+      if (teamList[member]) {
+        setUsername(member);
+        setFormData(teamList[member]);
+      } else {
+        history.push("/signup");
+      }
     }
   }, []);
 

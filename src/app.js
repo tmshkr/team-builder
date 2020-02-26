@@ -10,6 +10,7 @@ import {
 import initialData from "./data";
 import SignupForm from "./components/signup-form";
 import TeamList from "./components/team-list";
+import TeamMember from "./components/team-member";
 // import "./app.scss";
 
 function App() {
@@ -31,13 +32,16 @@ function App() {
         <main>
           <Switch>
             <Route path="/signup">
-              <SignupForm handleForm={[teamList, setList]} />
+              <SignupForm handleList={[teamList, setList]} />
             </Route>
-            <Route path={("/team/:member/edit", "/team/:member")}>
-              <SignupForm handleForm={[teamList, setList]} />
+            <Route path="/team/:member/edit">
+              <SignupForm handleList={[teamList, setList]} />
+            </Route>
+            <Route path="/team/:member">
+              <TeamMember handleList={[teamList, setList]} />
             </Route>
             <Route>
-              <TeamList handleForm={[teamList, setList]} />
+              <TeamList teamList={teamList} />
             </Route>
           </Switch>
         </main>
