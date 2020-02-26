@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 function SignupForm(props) {
@@ -13,15 +13,13 @@ function SignupForm(props) {
   });
 
   const history = useHistory();
-  const { member } = useParams();
+  const params = useParams();
 
   useEffect(() => {
-    if (member) {
-      if (teamList[member]) {
-        setUsername(member);
-        setFormData(teamList[member]);
-      } else {
-        history.push("/signup");
+    if (params.member) {
+      if (teamList[params.member]) {
+        setUsername(params.member);
+        setFormData(teamList[params.member]);
       }
     }
   }, []);
@@ -44,59 +42,62 @@ function SignupForm(props) {
   const { name, email, github, role } = formData;
 
   return (
-    <Form className="team-form" onSubmit={hanldeSubmit}>
-      <FormGroup>
-        <Label for="name">Name</Label>
-        <Input
-          id="name"
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-          placeholder="Your Name"
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label for="email">Email</Label>
-        <Input
-          id="email"
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-          placeholder="you@example.com"
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label for="github">GitHub handle</Label>
-        <Input
-          id="github"
-          type="text"
-          name="github"
-          value={github}
-          onChange={handleChange}
-          placeholder="username"
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label for="select">Role</Label>
-        <Input
-          id="select"
-          type="select"
-          name="role"
-          value={role}
-          onChange={handleChange}
-        >
-          <option disabled>Choose one</option>
-          <option>DevOps</option>
-          <option>Back-end</option>
-          <option>Front-end</option>
-          <option>Full-stack</option>
-          <option>UX/UI</option>
-        </Input>
-      </FormGroup>
-      <Button color="primary">Submit</Button>
-    </Form>
+    <>
+      {params.member && !teamList[params.member] && <Redirect to="/list" />}
+      <Form className="team-form" onSubmit={hanldeSubmit}>
+        <FormGroup>
+          <Label for="name">Name</Label>
+          <Input
+            id="name"
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            placeholder="Your Name"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+            placeholder="you@example.com"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="github">GitHub handle</Label>
+          <Input
+            id="github"
+            type="text"
+            name="github"
+            value={github}
+            onChange={handleChange}
+            placeholder="username"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="select">Role</Label>
+          <Input
+            id="select"
+            type="select"
+            name="role"
+            value={role}
+            onChange={handleChange}
+          >
+            <option disabled>Choose one</option>
+            <option>DevOps</option>
+            <option>Back-end</option>
+            <option>Front-end</option>
+            <option>Full-stack</option>
+            <option>UX/UI</option>
+          </Input>
+        </FormGroup>
+        <Button color="primary">Submit</Button>
+      </Form>
+    </>
   );
 }
 
