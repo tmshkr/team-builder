@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 function SignupForm(props) {
   const [teamList, setList] = props.handleList;
   const [username, setUsername] = useState("");
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,20 +17,31 @@ function SignupForm(props) {
   const params = useParams();
 
   useEffect(() => {
-    if (params.member) {
-      if (teamList[params.member]) {
-        setUsername(params.member);
-        setFormData(teamList[params.member]);
-      }
+    if (params.member && teamList[params.member]) {
+      setUsername(params.member);
+      setFormData(teamList[params.member]);
     }
   }, []);
 
   const hanldeSubmit = e => {
     e.preventDefault();
+
+    // check required fields
+    const errors = {};
+    for (let key in formData) {
+      if (!formData[key] || formData[key] === "Choose one") {
+        errors[key] = "This field is required";
+      }
+    }
+    if (Object.keys(errors).length > 0) {
+      return setErrors(errors);
+    }
+
     // handle github username change
     if (username && username !== formData.github) {
       delete teamList[username];
     }
+
     setList({ ...teamList, [formData.github]: formData });
     history.push("/list");
   };
@@ -56,6 +68,7 @@ function SignupForm(props) {
             onChange={handleChange}
             placeholder="Your Name"
           />
+          <span className="error">{errors.name}</span>
         </FormGroup>
         <FormGroup>
           <Label for="email">Email</Label>
@@ -67,6 +80,7 @@ function SignupForm(props) {
             onChange={handleChange}
             placeholder="you@example.com"
           />
+          <span className="error">{errors.email}</span>
         </FormGroup>
         <FormGroup>
           <Label for="github">GitHub handle</Label>
@@ -78,6 +92,7 @@ function SignupForm(props) {
             onChange={handleChange}
             placeholder="username"
           />
+          <span className="error">{errors.github}</span>
         </FormGroup>
         <FormGroup>
           <Label for="select">Role</Label>
@@ -95,6 +110,7 @@ function SignupForm(props) {
             <option>Full-stack</option>
             <option>UX/UI</option>
           </Input>
+          <span className="error">{errors.role}</span>
         </FormGroup>
         <Button color="primary">Submit</Button>
       </Form>
