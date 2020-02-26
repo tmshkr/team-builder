@@ -39,9 +39,10 @@ function App() {
             <Route path="/team/:member">
               <TeamMember handleList={[teamList, setList]} />
             </Route>
-            <Route>
+            <Route path="/list">
               <TeamList teamList={teamList} />
             </Route>
+            <Redirect to="/list" />
           </Switch>
         </main>
       </div>
