@@ -26,13 +26,21 @@ function SignupForm(props) {
   const hanldeSubmit = e => {
     e.preventDefault();
 
-    // check required fields
     const errors = {};
+
+    // check required fields
     for (let key in formData) {
       if (!formData[key] || formData[key] === "Choose one") {
         errors[key] = "This field is required";
       }
     }
+
+    // check to see if GitHub username is already in use
+    if (teamList[formData.github]) {
+      errors.github = "That username is already in use";
+    }
+
+    // if there are any errors, return early
     if (Object.keys(errors).length > 0) {
       return setErrors(errors);
     }
