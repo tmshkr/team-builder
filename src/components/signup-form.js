@@ -36,7 +36,7 @@ function SignupForm(props) {
     }
 
     // check to see if GitHub username is already in use
-    if (teamList[formData.github]) {
+    if (username && username !== formData.github && teamList[formData.github]) {
       errors.github = "That username is already in use";
     }
 
