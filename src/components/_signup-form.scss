@@ -1,0 +1,18 @@
+form.signup-form {
+  padding: 2rem;
+  background-color: #2b4345;
+  border: 1px solid rgba(158, 158, 158, 0.5);
+  h2 {
+    text-align: center;
+  }
+  .form-control {
+    background: #fff;
+  }
+  button {
+    display: block;
+    margin: 1rem auto;
+  }
+  span.error {
+    color: cyan;
+  }
+}
